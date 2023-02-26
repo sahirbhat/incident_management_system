@@ -20,6 +20,5 @@ router.register('incidentapi',views.Incidentviewset,basename='incidents')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(router.urls)),
-    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-    path('logout/', views.logout, name='api_logout'),
+    path('auth/',include('rest_framework.urls',namespace='rest_framework'))
 ] 
