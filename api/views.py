@@ -20,9 +20,9 @@ class Incidentviewset(viewsets.ModelViewSet):
         user=self.request.user
         return incidents.objects.filter(reporter_name=user)
     
-    def logout_view(request):
-        logout(request)
-        return redirect('api_token_auth')   
+    # def logout_view(request):
+    #     logout(request)
+    #     return redirect('api_token_auth')   
     
     def perform_create(self, serializer):
         serializer.save(reporter_name=self.request.user.username)

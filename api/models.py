@@ -23,10 +23,10 @@ class incidents(models.Model):
     #     letters = string.digits
     #     return ''.join(random.choice(letters) for i in range(length))
     
-    id=models.IntegerField(auto_created=True,primary_key=True ,default=None)
+    id=models.IntegerField(auto_created=True,primary_key=True ,default=None,editable=False)
     incident_id = models.CharField(max_length=15, editable=False, default='RMG' + str(datetime.date.today().year) + get_random_string(length=5, allowed_chars='0123456789'))
     
-    reporter_name = models.CharField( max_length=60)
+    reporter_name = models.CharField( max_length=60,)
     incident_details=models.TextField(blank=False,editable=True)
     reported_date_time = models.DateTimeField(auto_now_add=True)
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='medium')
