@@ -5,5 +5,5 @@ from . models import incidents
 
 @admin.register(incidents)
 class incidentsAdmin(admin.ModelAdmin):
-    list_display =['id','incident_id','reporter_name','incident_details','reported_date_time','priority','incident_status']
+    list_display =['incident_id','reporter_name','incident_details','reported_date_time','priority','incident_status']
 

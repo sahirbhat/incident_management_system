@@ -18,13 +18,13 @@ class incidents(models.Model):
         ('closed', 'Closed'),
     ]
 
-    # def get_random_string(length):
+    def get_random_string(length):
         
-    #     letters = string.digits
-    #     return ''.join(random.choice(letters) for i in range(length))
+        letters = string.digits
+        return ''.join(random.choice(letters) for i in range(length))
     
     id=models.IntegerField(auto_created=True,primary_key=True ,default=None,editable=False)
-    incident_id = models.CharField(max_length=15, editable=False, default='RMG' + str(datetime.date.today().year) + get_random_string(length=5, allowed_chars='0123456789'))
+    incident_id = models.CharField(unique=True,max_length=15, editable=False, default='RMG' + str(datetime.date.today().year) + get_random_string(length=5))
     
     reporter_name = models.CharField( max_length=60,)
     incident_details=models.TextField(blank=False,editable=True)
@@ -47,8 +47,8 @@ class incidents(models.Model):
     def create(self, validated_data):
         validated_data['reporter_name'] = self.context['request'].user.username
         return super().create(validated_data)
-    def __str__(self):
-        return self.incident_id
+    # def __str__(self):
+    #     return self.incident_id
 
 
 
