@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .models import incidents
 from .serializers import incidentSerializers
 from rest_framework import viewsets
-from rest_framework.authentication import BasicAuthentication,TokenAuthentication
+from rest_framework.authentication import BasicAuthentication,TokenAuthentication,SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend 
 from django.contrib.auth import logout
@@ -12,7 +12,7 @@ from django.contrib.auth import logout
 class Incidentviewset(viewsets.ModelViewSet):
     queryset=incidents.objects.all()
     serializer_class=incidentSerializers
-    authentication_classes=[BasicAuthentication]
+    authentication_classes=[SessionAuthentication]
     permission_classes=[IsAuthenticated]
     filter_backends=[DjangoFilterBackend] 
     filterset_fields=['incident_id']
